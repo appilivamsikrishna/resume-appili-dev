@@ -1,34 +1,51 @@
-<div class="row justify-content-md-center" style="margin-top: 50px">
-  <div class="col-12 col-md-8 col-xl-6 mb-4">
-    <div class="card border-light shadow-sm card-first">
-      <div class="card-body">
-        <h3>Images Uploaded</h3>
+<div class="container">
+  <div class="card border-light shadow-sm card-first">
+    <div class="card-body">
+      <h3>Images Uploaded</h3>
 
-        <!-- Loop through each image and display it as a button with file name and a delete button -->
-        <div *ngFor="let image of images">
-          <p class="text-center">
-            <a
-              class="btn btn-primary"
-              [href]="image.file_link"
-              [title]="image.file_name"
-              target="_blank"
-            >
-              {{ image.file_name }}
-              <span class="fa-solid fa-image" style="color: #ffffff"></span>
-            </a>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Download</th>
+              <th scope="col">Uploaded On</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let image of images; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ image.file_name }}</td>
+              <td>
+                <a
+                  class="btn btn-primary btn-sm"
+                  [href]="image.file_link"
+                  target="_blank"
+                >
+                  Download
+                  <span class="fa-solid fa-download"></span>
+                </a>
+              </td>
+              <td>{{ image.time_stamp }}</td>
+              <td>
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteFile(image.unique_id)"
+                >
+                  Delete
+                  <span class="fa-solid fa-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-            <!-- Delete Button -->
-            <button class="btn btn-danger" (click)="deleteFile(image.unique_id)">
-              Delete
-              <span class="fa-solid fa-trash"></span>
-            </button>
-          </p>
-        </div>
-
-        <!-- Fallback if no images are found -->
-        <div *ngIf="images.length === 0" class="text-center">
-          <p>No images uploaded yet.</p>
-        </div>
+      <!-- Fallback if no images are found -->
+      <div *ngIf="images.length === 0" class="text-center">
+        <p>No images uploaded yet.</p>
       </div>
     </div>
   </div>
