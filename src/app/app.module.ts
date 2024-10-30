@@ -7,21 +7,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from "../environments/environment";
 import { ResolutionService } from './fwk/service/resolution.service';
 import { AppRoutingModule } from './app-routing.module';
-import { AboutComponent } from './about/about.component';
 import { AppComponent } from './app.component';
 import { AppMissingTranslationHandler } from './fwk/i18n/i18n.module';
 import { HomeComponent } from './home/home.component';
-import { CertifsComponent } from './certifs/certifs.component';
-import { TechnologiesComponent } from './technologies/technologies.component';
-import { MembersComponent } from './members/members.component';
-import { AchievementsComponent } from './achievements/achievements.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { DemosComponent } from './demos/demos.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { GithubUserProjectsService } from './services/github-user-projects.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CsvViewerComponent } from './privacy-policies/csv-viewer/csv-viewer.component';
+
 import { LandingComponent } from './landing/landing.component';
 import { UploadComponent } from './upload/upload.component';
 import { StatusComponent } from './status/status.component';
@@ -70,16 +63,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   declarations: [
     AppComponent,
-    AboutComponent,
     HomeComponent,
-    CertifsComponent,
-    TechnologiesComponent,
-    MembersComponent,
-    AchievementsComponent,
-    ContactsComponent,
-    DemosComponent,
     NavbarComponent,
-    CsvViewerComponent,
     LandingComponent,
     UploadComponent,
     StatusComponent,
