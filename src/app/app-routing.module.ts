@@ -1,24 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { AchievementsComponent } from './achievements/achievements.component';
-import { CertifsComponent } from './certifs/certifs.component';
+
+
 import { ContactsComponent } from './contacts/contacts.component';
 import { DemosComponent } from './demos/demos.component';
-import { HomeComponent } from './home/home.component';
+
 import { MembersComponent } from './members/members.component';
 import { CsvViewerComponent } from './privacy-policies/csv-viewer/csv-viewer.component';
 import { TechnologiesComponent } from './technologies/technologies.component';
+import { LandingComponent } from './landing/landing.component';
+import { ImagesComponent } from './images/images.component';
+import { VideosComponent } from './videos/videos.component';
 
+// removing code is our last step
 
 const routes: Routes = [
   {
     path: "images",
-    component: HomeComponent,
+    component: ImagesComponent,
   },
   {
     path: "videos",
-    component: CertifsComponent,
+    component: VideosComponent,
   },
   {
     path: "files",
@@ -29,8 +32,8 @@ const routes: Routes = [
     component: MembersComponent,
   },
   {
-    path: "info",
-    component: AchievementsComponent,
+    path: "home",
+    component: LandingComponent,
   },
   {
     path: "contacts",
@@ -43,15 +46,15 @@ const routes: Routes = [
   {
     path: "privacy-policies/csv-viewer",
     component: CsvViewerComponent,
-  },          // probably TODO disable Security Appili Vamsi Krishna DFS
+  }, // probably TODO disable Security Appili Vamsi Krishna DFS
   {
     path: "",
-    redirectTo: "/info",
+    redirectTo: "/home",
     pathMatch: "full",
   },
   {
     path: "**",
-    component: HomeComponent,
+    component: LandingComponent,
   },
 ];
 
