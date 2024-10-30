@@ -1,29 +1,81 @@
+/* Main container with centered layout and gradient background */
+.main-status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f0f9ff, #cfd9df);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.live-status-text {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds space between Active and the circle */
+}
+
+
+
 .live-status-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  font-family: Arial, sans-serif;
-  font-size: 18px;
+  flex-direction: column;
+  text-align: center;
   color: #333;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
 .live-status-circle {
-  width: 20px;
-  height: 20px;
+  width: 27px;
+  height: 27px;
   border-radius: 50%;
-  background-color: #2ecc71; /* A more modern green color */
-  margin-right: 10px;
-  box-shadow: 0 0 10px rgba(46, 204, 113, 0.8); /* Add a subtle shadow */
+  background-color: #28a745; /* Brighter green */
+  box-shadow: 0 0 15px rgba(40, 167, 69, 0.7);
+
+  animation: pulse 1.5s infinite;
 }
 
-.live-status-text {
+.live-status-indicator {
+  background-color: #28a745;
+  color: white;
+  border-radius: 8px;
+  padding: 4px 8px;
   font-weight: bold;
+
+  display: inline-block;
 }
 
-/* Optional animation for a pulsing effect */
+.status-message {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+}
+
+.status-message p {
+  margin: 10px 0;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.custom-spacing {
+  margin-left: 3vw; /* Adjust the gap as needed */
+  margin-right: 5vw;
+}
+
+
+.status-message p i {
+  font-size: 2em; /* Increase icon size */
+  margin-right: 8px;
+  color: #28a745;
+}
+
 @keyframes pulse {
-  0% {
+  0%, 100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -31,15 +83,25 @@
     transform: scale(1.2);
     opacity: 0.8;
   }
-  100% {
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+@keyframes growShrink {
+  0%, 100% {
     transform: scale(1);
-    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
   }
 }
 
-.live-status-indicator {
-  background-color: #2ecc71; /* Use the same green color as the circle */
-  color: white; /* Text color for the indicator */
-  border-radius: 3px;
-  padding: 2px 6px;
+.broadcast-icon {
+  animation: growShrink 1.5s infinite;
+  color: #28a745;
+  font-size: 8em;
 }
