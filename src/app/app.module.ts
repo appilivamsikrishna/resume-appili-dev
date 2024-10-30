@@ -23,6 +23,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CsvViewerComponent } from './privacy-policies/csv-viewer/csv-viewer.component';
 import { LandingComponent } from './landing/landing.component';
+import { UploadComponent } from './upload/upload.component';
+import { StatusComponent } from './status/status.component';
+import { ImagesComponent } from './images/images.component';
+import { VideosComponent } from './videos/videos.component';
+import { FilesComponent } from './files/files.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -69,6 +74,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarComponent,
     CsvViewerComponent,
     LandingComponent,
+    UploadComponent,
+    StatusComponent,
+    ImagesComponent,
+    VideosComponent,
+    FilesComponent,
   ],
   bootstrap: [AppComponent]
 })
