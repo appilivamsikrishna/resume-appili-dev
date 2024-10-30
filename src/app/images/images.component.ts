@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import axios from "axios";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 @Component({
   selector: "app-images",
@@ -27,18 +28,34 @@ export class ImagesComponent implements OnInit {
       });
   }
 
-  // Method to delete a file by unique_id
+  // Method to delete a file by unique_id, with SweetAlert confirmation
   deleteFile(unique_id: string): void {
-    if (confirm("Are you sure you want to delete this file?")) {
-      axios
-        .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`) // Replace with your actual API URL
-        .then((response) => {
-          console.log("File deleted:", response.data);
-          this.fetchImages(); // Re-fetch the images after deletion to update the list
-        })
-        .catch((error) => {
-          console.error("Error deleting file:", error);
-        });
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This file will be permanently deleted!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed with file deletion
+        axios
+          .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`) // Replace with your actual API URL
+          .then((response) => {
+            Swal.fire("Deleted!", "The file has been deleted.", "success");
+            this.fetchImages(); // Re-fetch the images after deletion to update the list
+          })
+          .catch((error) => {
+            console.error("Error deleting file:", error);
+            Swal.fire(
+              "Error!",
+              "There was a problem deleting the file.",
+              "error"
+            );
+          });
+      }
+    });
   }
 }
