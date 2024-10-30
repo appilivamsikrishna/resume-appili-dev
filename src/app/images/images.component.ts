@@ -26,4 +26,19 @@ export class ImagesComponent implements OnInit {
         console.error("Error fetching images:", error);
       });
   }
+
+  // Method to delete a file by unique_id
+  deleteFile(unique_id: string): void {
+    if (confirm("Are you sure you want to delete this file?")) {
+      axios
+        .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`) // Replace with your actual API URL
+        .then((response) => {
+          console.log("File deleted:", response.data);
+          this.fetchImages(); // Re-fetch the images after deletion to update the list
+        })
+        .catch((error) => {
+          console.error("Error deleting file:", error);
+        });
+    }
+  }
 }

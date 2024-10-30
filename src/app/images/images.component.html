@@ -4,7 +4,7 @@
       <div class="card-body">
         <h3>Images Uploaded</h3>
 
-        <!-- Loop through each image and display it as a button with file name -->
+        <!-- Loop through each image and display it as a button with file name and a delete button -->
         <div *ngFor="let image of images">
           <p class="text-center">
             <a
@@ -16,6 +16,12 @@
               {{ image.file_name }}
               <span class="fa-solid fa-image" style="color: #ffffff"></span>
             </a>
+
+            <!-- Delete Button -->
+            <button class="btn btn-danger" (click)="deleteFile(image.unique_id)">
+              Delete
+              <span class="fa-solid fa-trash"></span>
+            </button>
           </p>
         </div>
 
