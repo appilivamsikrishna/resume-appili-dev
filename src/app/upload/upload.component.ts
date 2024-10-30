@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Firebase Storage imports
-import axios from "axios"; // Import Axios
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-upload",
@@ -8,60 +9,70 @@ import axios from "axios"; // Import Axios
   styleUrls: ["./upload.component.css"],
 })
 export class UploadComponent implements OnInit {
-  selectedFiles: File[] = []; // Array to store selected files
-  downloadURLs: string[] = []; // Array to store download URLs for multiple files
+  selectedFiles: File[] = [];
+  downloadURLs: string[] = [];
+  isUploading: boolean = false; // Track if uploading
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  // Method to handle file selection
   filesSelected(event: any): void {
-    this.selectedFiles = Array.from(event.target.files); // Store the selected files in an array
+    this.selectedFiles = Array.from(event.target.files);
     console.log(this.selectedFiles);
   }
 
-  // Method to categorize and upload files one by one
   uploadFiles(): void {
     if (this.selectedFiles.length > 0) {
-      this.selectedFiles.forEach((file) => {
-        const storage = getStorage(); // Use the new getStorage function
-        const storageRef = ref(storage, file.name); // Create a reference to 'file.name'
+      this.isUploading = true; // Start uploading
+      let uploadPromises = this.selectedFiles.map((file) => {
+        const storage = getStorage();
+        const storageRef = ref(storage, file.name);
 
-        // Upload the file
-        uploadBytes(storageRef, file)
-          .then((snapshot) => {
-            console.log(`Uploaded file: ${file.name}`);
+        return uploadBytes(storageRef, file).then((snapshot) => {
+          return getDownloadURL(storageRef).then((url) => {
+            this.downloadURLs.push(url);
 
-            // Get the download URL
-            getDownloadURL(storageRef).then((url) => {
-              this.downloadURLs.push(url); // Store the download URL in the array
+            const fileData = {
+              file_name: file.name,
+              file_type: this.getFileType(file),
+              file_extension: file.name.split(".").pop() || "",
+              file_link: url,
+            };
 
-              // Prepare the data to send to the server
-              const fileData = {
-                file_name: file.name, // Full file name
-                file_type: this.getFileType(file), // Categorize the file based on MIME type
-                file_extension: file.name.split(".").pop() || "", // Extract the file extension
-                file_link: url, // Firebase download URL
-              };
-
-              console.log("File available at:", url);
-              console.log("File data to send to server:", fileData);
-
-              // Here you would send 'fileData' to your Express backend using Axios
-              this.saveFileToServer(fileData);
-            });
-          })
-          .catch((error) => {
-            console.error(`Error uploading file ${file.name}:`, error);
+            return this.saveFileToServer(fileData);
           });
+        });
       });
+
+      // Wait for all uploads to finish
+      Promise.all(uploadPromises)
+        .then(() => {
+          console.log("All files uploaded successfully.");
+          Swal.fire({
+            title: "Upload Successful!",
+            text: `${this.selectedFiles.length} file(s) uploaded successfully.`,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        })
+        .catch((error) => {
+          console.error("Error uploading files:", error);
+           Swal.fire({
+             title: "Upload Failed",
+             text: "There was an error uploading your files.",
+             icon: "error",
+             confirmButtonText: "OK",
+           });
+        })
+        .finally(() => {
+          this.isUploading = false; // Reset uploading state
+        });
     } else {
       console.log("No files selected");
     }
   }
 
-  // Helper method to determine file type (image, video, or file)
   getFileType(file: File): string {
     const imageTypes = ["image/jpeg", "image/png", "image/gif"];
     const videoTypes = ["video/mp4", "video/avi", "video/mov"];
@@ -71,19 +82,14 @@ export class UploadComponent implements OnInit {
     } else if (videoTypes.includes(file.type)) {
       return "video";
     } else {
-      return "file"; // Default to 'file' for non-image and non-video types
+      return "file";
     }
   }
 
-  // Method to send file data to your backend using Axios
-  saveFileToServer(fileData: any): void {
-    axios
-      .post("https://api.astrodata.network/api/post/upload", fileData)
-      .then((response) => {
-        console.log("File data saved to server:", response);
-      })
-      .catch((error) => {
-        console.error("Error saving file data:", error);
-      });
+  saveFileToServer(fileData: any): Promise<any> {
+    return axios.post(
+      "https://api.astrodata.network/api/post/upload",
+      fileData
+    );
   }
 }
