@@ -4,10 +4,12 @@
     {{ isUploading ? "Uploading..." : "Upload File(s)" }}
   </button>
 
-  <div class="uploaded-files" *ngIf="downloadURLs.length > 0">
-    <p *ngFor="let url of downloadURLs">
-      <a [href]="url" target="_blank">View Uploaded File</a>
-      <button (click)="deleteFile(url)">Delete</button>
-    </p>
-  </div>
+<div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
+  <p *ngFor="let file of uploadedFiles">
+    <a [href]="file.url" target="_blank">{{ file.file_name }} ({{ file.file_size }} KB, {{ file.file_type }})</a>
+    <button (click)="deleteFile(file.url)">Delete</button>
+  </p>
+</div>
+
+
 </div>

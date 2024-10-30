@@ -10,8 +10,13 @@ import Swal from "sweetalert2";
 })
 export class UploadComponent implements OnInit {
   selectedFiles: File[] = [];
-  downloadURLs: string[] = [];
-  isUploading: boolean = false; // Track if uploading
+  uploadedFiles: {
+    url: string;
+    file_name: string;
+    file_size: number;
+    file_type: string;
+  }[] = [];
+  isUploading: boolean = false;
 
   constructor() {}
 
@@ -31,7 +36,12 @@ export class UploadComponent implements OnInit {
 
         return uploadBytes(storageRef, file).then((snapshot) => {
           return getDownloadURL(storageRef).then((url) => {
-            this.downloadURLs.push(url);
+            this.uploadedFiles.push({
+              url: url,
+              file_name: file.name,
+              file_size: Math.round(file.size / 1024), // Convert size to KB
+              file_type: this.getFileType(file),
+            });
 
             const fileData = {
               file_name: file.name,
@@ -58,12 +68,12 @@ export class UploadComponent implements OnInit {
         })
         .catch((error) => {
           console.error("Error uploading files:", error);
-           Swal.fire({
-             title: "Upload Failed",
-             text: "There was an error uploading your files.",
-             icon: "error",
-             confirmButtonText: "OK",
-           });
+          Swal.fire({
+            title: "Upload Failed",
+            text: "There was an error uploading your files.",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
         })
         .finally(() => {
           this.isUploading = false; // Reset uploading state
