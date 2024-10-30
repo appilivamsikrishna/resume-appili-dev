@@ -2,103 +2,32 @@
   <div class="col-12 col-md-8 col-xl-6 mb-4">
     <div class="card border-light shadow-sm card-first">
       <div class="card-body">
-        <h3>Files</h3>
+        <h3>Files Uploaded</h3>
 
-        <div>
+        <!-- Loop through each file and display it as a button with file name and a delete button -->
+        <div *ngFor="let file of files">
           <p class="text-center">
             <a
               class="btn btn-primary"
-              href="../../assets/files/BM_EndTerm_DP_23_FE_01.pptx"
-              title="pptx"
+              [href]="file.file_link"
+              [title]="file.file_name"
+              target="_blank"
             >
-              BM EndTerm PPT DP 23 FE 01
-              <span
-                class="fa-solid fa-file-powerpoint"
-                style="color: #ffffff"
-              ></span
-            ></a>
+              {{ file.file_name }}
+              <span class="fa-solid fa-file" style="color: #ffffff"></span>
+            </a>
+
+            <!-- Delete Button -->
+            <button class="btn btn-danger" (click)="deleteFile(file.unique_id)">
+              Delete
+              <span class="fa-solid fa-trash"></span>
+            </button>
           </p>
         </div>
 
-        <div>
-          <p class="text-center">
-            <a
-              class="btn btn-primary"
-              href="../../assets/files/FM_EndTerm_DP_23_FE_01.pptx"
-              title="pptx"
-            >
-              FM EndTerm PPT DP 23 FE 01
-              <span
-                class="fa-solid fa-file-powerpoint"
-                style="color: #ffffff"
-              ></span
-            ></a>
-          </p>
-        </div>
-
-        <div>
-          <p class="text-center">
-            <a
-              class="btn btn-primary"
-              href="../../assets/files/FGP-MR_EndTerm_DP_23_FE_01.pptx"
-              title="pptx"
-            >
-              Faculty Guided Project - Marketing & Retail EndTerm PPT DP 23 FE
-              01
-              <span
-                class="fa-solid fa-file-powerpoint"
-                style="color: #ffffff"
-              ></span
-            ></a>
-          </p>
-        </div>
-
-        <div>
-          <p class="text-center">
-            <a
-              class="btn btn-primary"
-              href="../../assets/files/BPD_EndTerm_DP_23_FE_01.pptx"
-              title="pptx"
-            >
-              Business Plan Development EndTerm PPT DP 23 FE 01
-              <span
-                class="fa-solid fa-file-powerpoint"
-                style="color: #ffffff"
-              ></span
-            ></a>
-          </p>
-        </div>
-
-        <div>
-          <p class="text-center">
-            <a
-              class="btn btn-primary"
-              href="../../assets/files/FoE_EndTerm_DP_23_FE_01.pptx"
-              title="pptx"
-            >
-              Fundamentals of Entrepreneurship EndTerm PPT DP 23 FE 01
-              <span
-                class="fa-solid fa-file-powerpoint"
-                style="color: #ffffff"
-              ></span
-            ></a>
-          </p>
-        </div>
-
-        <div>
-          <p class="text-center">
-            <a
-              class="btn btn-primary"
-              href="../../assets/files/FoE_EndTerm_DP_23_FE_01.pdf"
-              title="pptx"
-            >
-              PDF Fundamentals of Entrepreneurship EndTerm PPT DP 23 FE 01
-              <span
-                class="fa-solid fa-file-powerpoint"
-                style="color: #ffffff"
-              ></span
-            ></a>
-          </p>
+        <!-- Fallback if no files are found -->
+        <div *ngIf="files.length === 0" class="text-center">
+          <p>No files uploaded yet.</p>
         </div>
       </div>
     </div>

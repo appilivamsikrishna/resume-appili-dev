@@ -2,9 +2,33 @@
   <div class="col-12 col-md-8 col-xl-6 mb-4">
     <div class="card border-light shadow-sm card-first">
       <div class="card-body">
-        <h3>Videos New</h3>
+        <h3>Videos Uploaded</h3>
 
-        <p>No Data Available</p>
+        <!-- Loop through each video and display it as a button with file name and a delete button -->
+        <div *ngFor="let video of videos">
+          <p class="text-center">
+            <a
+              class="btn btn-primary"
+              [href]="video.file_link"
+              [title]="video.file_name"
+              target="_blank"
+            >
+              {{ video.file_name }}
+              <span class="fa-solid fa-video" style="color: #ffffff"></span>
+            </a>
+
+            <!-- Delete Button -->
+            <button class="btn btn-danger" (click)="deleteVideo(video.unique_id)">
+              Delete
+              <span class="fa-solid fa-trash"></span>
+            </button>
+          </p>
+        </div>
+
+        <!-- Fallback if no videos are found -->
+        <div *ngIf="videos.length === 0" class="text-center">
+          <p>No videos uploaded yet.</p>
+        </div>
       </div>
     </div>
   </div>

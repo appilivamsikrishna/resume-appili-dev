@@ -1,0 +1,86 @@
+/* Style the container for the upload section */
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Style the file input */
+.upload-container input[type="file"] {
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the upload button */
+.upload-container button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 0;
+}
+
+.upload-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Style the list of uploaded files */
+.uploaded-files {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.uploaded-files p {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+.uploaded-files a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.uploaded-files a:hover {
+  text-decoration: underline;
+}
+
+/* Style the delete button */
+.uploaded-files button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.uploaded-files button:hover {
+  background-color: #c82333;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .uploaded-files p {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .uploaded-files button {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
