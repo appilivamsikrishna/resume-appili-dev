@@ -1,4 +1,7 @@
 
+TO DO : Meta data corrections
+
+
 # CDN Project
 
 This project is a Content Delivery Network (CDN) interface built with Angular. It enables users to upload, view, and manage files (images, videos, and general files) through an intuitive UI. Uploaded files are stored in Firebase, and their metadata is managed in MongoDB via an Express API backend.
