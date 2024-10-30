@@ -3,7 +3,7 @@
     <div class="card-body">
       <h3>Images Uploaded</h3>
 
-      <div class="table-responsive">
+      <div *ngIf="images.length > 0" class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
           <thead class="table-dark">
             <tr>
@@ -44,8 +44,8 @@
       </div>
 
       <!-- Fallback if no images are found -->
-      <div *ngIf="images.length === 0" class="text-center  mt-4">
-        <p>No images uploaded yet.</p>
+      <div *ngIf="images.length === 0" class="text-center mt-4">
+        <p>No images here yet. Upload one to see it displayed.</p>
       </div>
     </div>
   </div>

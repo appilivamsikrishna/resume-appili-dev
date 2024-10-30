@@ -3,7 +3,7 @@
     <div class="card-body">
       <h3>Videos Uploaded</h3>
 
-      <div class="table-responsive">
+      <div *ngIf="videos.length > 0" class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
           <thead class="table-dark">
             <tr>
@@ -45,7 +45,7 @@
 
       <!-- Fallback if no videos are found -->
       <div *ngIf="videos.length === 0" class="text-center mt-4">
-        <p>No videos uploaded yet.</p>
+        <p>No videos here yet. Upload one to see it displayed.</p>
       </div>
     </div>
   </div>
