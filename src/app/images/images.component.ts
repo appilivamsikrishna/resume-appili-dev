@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import axios from "axios";
 
 @Component({
-  selector: 'app-images',
-  templateUrl: './images.component.html',
-  styleUrls: ['./images.component.css']
+  selector: "app-images",
+  templateUrl: "./images.component.html",
+  styleUrls: ["./images.component.css"],
 })
 export class ImagesComponent implements OnInit {
+  images: any[] = []; // Array to store the fetched image data
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    this.fetchImages(); // Fetch images when the component initializes
   }
 
+  // Method to fetch images from the backend API
+  fetchImages(): void {
+    axios
+      .get("https://api.astrodata.network/api/get/files?type=image") // Replace with your actual API URL
+      .then((response) => {
+        this.images = response.data; // Store the fetched images in the array
+      })
+      .catch((error) => {
+        console.error("Error fetching images:", error);
+      });
+  }
 }
