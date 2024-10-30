@@ -42,10 +42,17 @@ export class ImagesComponent implements OnInit {
       if (result.isConfirmed) {
         // Proceed with file deletion
         axios
-          .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`) // Replace with your actual API URL
+          .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`)
           .then((response) => {
             Swal.fire("Deleted!", "The file has been deleted.", "success");
-            this.fetchImages(); // Re-fetch the images after deletion to update the list
+
+            // Remove the deleted image from the local images array
+            this.images = this.images.filter(
+              (image) => image.unique_id !== unique_id
+            );
+
+            // Re-fetch if necessary, though the UI will now immediately reflect the deletion
+            this.fetchImages();
           })
           .catch((error) => {
             console.error("Error deleting file:", error);
