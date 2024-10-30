@@ -1,53 +1,97 @@
+/* General Container Styling */
 .landing-container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 40px;
 }
 
+/* Hero Section Styling */
 .hero {
-  background-color: #007bff;
-  color: white;
-  padding: 50px;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Subtle blue gradient */
+  color: #333;
+  padding: 60px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .hero h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333; /* Darker color for contrast */
+  margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 1.2em;
+  font-size: 1.2rem;
+  color: #555;
   margin-bottom: 20px;
 }
 
 .hero button {
-  background-color: white;
-  color: #007bff;
+  background-color: #ff7f50; /* Coral color for CTA button */
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .hero button:hover {
-  background-color: #f1f1f1;
+  background-color: #ff6347; /* Darker coral on hover */
 }
 
+/* Features Section Styling */
 .features {
-  margin-top: 50px;
-}
-
-.feature-list {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
 }
 
-.feature-item {
-  width: 30%;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-radius: 5px;
+.feature-card {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px); /* Lift effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45); /* Stronger shadow on hover */
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-card {
+    margin-bottom: 15px;
+    width: 90%;
+  }
 }
