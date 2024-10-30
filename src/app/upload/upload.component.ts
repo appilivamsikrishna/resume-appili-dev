@@ -15,6 +15,7 @@ export class UploadComponent implements OnInit {
     file_name: string;
     file_size: number;
     file_type: string;
+    uniqueId: string;
   }[] = [];
   isUploading: boolean = false;
 
@@ -29,20 +30,13 @@ export class UploadComponent implements OnInit {
 
   uploadFiles(): void {
     if (this.selectedFiles.length > 0) {
-      this.isUploading = true; // Start uploading
+      this.isUploading = true;
       let uploadPromises = this.selectedFiles.map((file) => {
         const storage = getStorage();
         const storageRef = ref(storage, file.name);
 
         return uploadBytes(storageRef, file).then((snapshot) => {
           return getDownloadURL(storageRef).then((url) => {
-            this.uploadedFiles.push({
-              url: url,
-              file_name: file.name,
-              file_size: Math.round(file.size / 1024), // Convert size to KB
-              file_type: this.getFileType(file),
-            });
-
             const fileData = {
               file_name: file.name,
               file_type: this.getFileType(file),
@@ -50,15 +44,22 @@ export class UploadComponent implements OnInit {
               file_link: url,
             };
 
-            return this.saveFileToServer(fileData);
+            return this.saveFileToServer(fileData).then((response) => {
+              // Save file details with uniqueId
+              this.uploadedFiles.push({
+                url: url,
+                file_name: file.name,
+                file_size: Math.round(file.size / 1024),
+                file_type: this.getFileType(file),
+                uniqueId: response.data.uniqueId, // Store uniqueId
+              });
+            });
           });
         });
       });
 
-      // Wait for all uploads to finish
       Promise.all(uploadPromises)
         .then(() => {
-          console.log("All files uploaded successfully.");
           Swal.fire({
             title: "Upload Successful!",
             text: `${this.selectedFiles.length} file(s) uploaded successfully.`,
@@ -81,6 +82,39 @@ export class UploadComponent implements OnInit {
     } else {
       console.log("No files selected");
     }
+  }
+
+  // Method to delete a file by uniqueId, with SweetAlert confirmation
+  deleteFile(uniqueId: string): void {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "This file will be permanently deleted!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`https://api.astrodata.network/api/delete/file/${uniqueId}`)
+          .then((response) => {
+            Swal.fire("Deleted!", "The file has been deleted.", "success");
+            // Remove the deleted file from the list
+            this.uploadedFiles = this.uploadedFiles.filter(
+              (file) => file.uniqueId !== uniqueId
+            );
+          })
+          .catch((error) => {
+            console.error("Error deleting file:", error);
+            Swal.fire(
+              "Error!",
+              "There was a problem deleting the file.",
+              "error"
+            );
+          });
+      }
+    });
   }
 
   getFileType(file: File): string {

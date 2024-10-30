@@ -7,7 +7,7 @@
 <div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
   <p *ngFor="let file of uploadedFiles">
     <a [href]="file.url" target="_blank">{{ file.file_name }} ({{ file.file_size }} KB, {{ file.file_type }})</a>
-    <button (click)="deleteFile(file.url)">Delete</button>
+    <button (click)="deleteFile(file.uniqueId)">Delete</button>
   </p>
 </div>
 
