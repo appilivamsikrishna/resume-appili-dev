@@ -1,1 +1,4 @@
-<p>upload works!</p>
+<input type="file" (change)="uploadFile($event)" />
+<div *ngIf="downloadURL">
+  <a [href]="downloadURL" target="_blank">View Uploaded File</a>
+</div>

@@ -4,7 +4,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
+import { environment } from "../environments/environment";
 import { ResolutionService } from './fwk/service/resolution.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
@@ -28,6 +28,13 @@ import { StatusComponent } from './status/status.component';
 import { ImagesComponent } from './images/images.component';
 import { VideosComponent } from './videos/videos.component';
 import { FilesComponent } from './files/files.component';
+import * as firebase from 'firebase/app'; // Import Firebase SDK
+import 'firebase/storage'; // Import Firebase Storage
+
+
+// Initialize Firebase
+firebase.initializeApp(environment.firebase);
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
