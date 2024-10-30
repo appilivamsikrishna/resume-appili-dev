@@ -8,7 +8,7 @@ declare const bootstrap: any; // global reference
 export class AppConstants {
 
 
-  public static APP_TITLE = 'CDN';
+  public static APP_TITLE = 'Appili CDN';
   public static AUTHOR_NAME = 'APPILI DEV';
   public static APP_TITLE_VERSION: string = AppConstants.APP_TITLE;
 
