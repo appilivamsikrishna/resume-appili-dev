@@ -1,6 +1,6 @@
 <div class="upload-container">
   <input type="file" (change)="filesSelected($event)" multiple />
-  <button (click)="uploadFiles()">Upload All</button>
+  <button (click)="uploadFiles()">Upload File(s)</button>
 
   <div class="uploaded-files" *ngIf="downloadURLs.length > 0">
     <p *ngFor="let url of downloadURLs">
