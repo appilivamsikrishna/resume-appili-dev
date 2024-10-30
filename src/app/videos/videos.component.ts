@@ -40,12 +40,17 @@ export class VideosComponent implements OnInit {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Proceed with video deletion
         axios
-          .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`) // Replace with your actual API URL
+          .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`)
           .then((response) => {
             Swal.fire("Deleted!", "The video has been deleted.", "success");
-            this.fetchVideos(); // Re-fetch the videos after deletion to update the list
+
+            // Remove the deleted video from the local videos array
+            this.videos = this.videos.filter(
+              (video) => video.unique_id !== unique_id
+            );
+
+            this.fetchVideos(); // Optionally re-fetch
           })
           .catch((error) => {
             console.error("Error deleting video:", error);

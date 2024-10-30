@@ -42,6 +42,17 @@ export class UploadComponent implements OnInit {
               file_type: this.getFileType(file),
               file_extension: file.name.split(".").pop() || "",
               file_link: url,
+              time_stamp: new Date()
+                .toLocaleString("en-IN", {
+                  timeZone: "Asia/Kolkata",
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
+                })
+                .replace(",", " at"), // Format as "31 Oct, 2024, at 3:37 AM"
             };
 
             return this.saveFileToServer(fileData).then((response) => {

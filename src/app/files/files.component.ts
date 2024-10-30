@@ -40,12 +40,17 @@ export class FilesComponent implements OnInit {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Proceed with file deletion
         axios
-          .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`) // Replace with your actual API URL
+          .delete(`https://api.astrodata.network/api/delete/file/${unique_id}`)
           .then((response) => {
             Swal.fire("Deleted!", "The file has been deleted.", "success");
-            this.fetchFiles(); // Re-fetch the files after deletion to update the list
+
+            // Remove the deleted file from the local files array
+            this.files = this.files.filter(
+              (file) => file.unique_id !== unique_id
+            );
+
+            this.fetchFiles(); // Optionally re-fetch
           })
           .catch((error) => {
             console.error("Error deleting file:", error);
