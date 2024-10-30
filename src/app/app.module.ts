@@ -22,6 +22,7 @@ import { GithubUserProjectsService } from './services/github-user-projects.servi
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CsvViewerComponent } from './privacy-policies/csv-viewer/csv-viewer.component';
+import { LandingComponent } from './landing/landing.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DemosComponent,
     NavbarComponent,
     CsvViewerComponent,
+    LandingComponent,
   ],
   bootstrap: [AppComponent]
 })
