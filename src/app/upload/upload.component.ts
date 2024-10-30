@@ -65,6 +65,7 @@ export class UploadComponent implements OnInit {
 
             // Prepare the data to send to the server
             const fileData = {
+              file_name: this.selectedFile!.name, // Full file name
               file_type: this.fileType,
               file_extension: this.fileExtension,
               file_link: this.downloadURL,
