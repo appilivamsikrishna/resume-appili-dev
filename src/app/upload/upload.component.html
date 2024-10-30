@@ -1,4 +1,10 @@
-<input type="file" (change)="uploadFile($event)" />
+<!-- File input field -->
+<input type="file" (change)="fileSelected($event)" />
+<br>
+<!-- Upload button to trigger the uploadFile function -->
+<button (click)="uploadFile()">Upload</button>
+
+<!-- Display the download link once the file is uploaded -->
 <div *ngIf="downloadURL">
   <a [href]="downloadURL" target="_blank">View Uploaded File</a>
 </div>
