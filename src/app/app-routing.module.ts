@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FilesComponent } from './files/files.component';
-import { LandingComponent } from './landing/landing.component';
-import { ImagesComponent } from './images/images.component';
-import { VideosComponent } from './videos/videos.component';
-import { StatusComponent } from './status/status.component';
-
-
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { FilesComponent } from "./files/files.component";
+import { LandingComponent } from "./landing/landing.component";
+import { ImagesComponent } from "./images/images.component";
+import { VideosComponent } from "./videos/videos.component";
+import { StatusComponent } from "./status/status.component";
+import { UploadComponent } from "./upload/upload.component";
 
 // removing code is our last step
 
 const routes: Routes = [
+  { path: "upload", component: UploadComponent },
   {
     path: "images",
     component: ImagesComponent,
@@ -44,11 +44,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' })
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      relativeLinkResolution: "legacy",
+    }),
   ],
-  exports: [
-    RouterModule
-  ],
-  declarations: []
+  exports: [RouterModule],
+  declarations: [],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
