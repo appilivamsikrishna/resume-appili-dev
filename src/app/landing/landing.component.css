@@ -1,0 +1,53 @@
+.landing-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.hero {
+  background-color: #007bff;
+  color: white;
+  padding: 50px;
+  border-radius: 8px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  background-color: white;
+  color: #007bff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero button:hover {
+  background-color: #f1f1f1;
+}
+
+.features {
+  margin-top: 50px;
+}
+
+.feature-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.feature-item {
+  width: 30%;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
