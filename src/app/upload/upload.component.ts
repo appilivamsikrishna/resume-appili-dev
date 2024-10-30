@@ -8,81 +8,70 @@ import axios from "axios"; // Import Axios
   styleUrls: ["./upload.component.css"],
 })
 export class UploadComponent implements OnInit {
-  selectedFile: File | null = null; // To store the selected file
-  downloadURL: string; // Store the URL after upload
-  fileType: string = ""; // To store file type (image, video, file)
-  fileExtension: string = ""; // To store file extension
+  selectedFiles: File[] = []; // Array to store selected files
+  downloadURLs: string[] = []; // Array to store download URLs for multiple files
 
   constructor() {}
 
   ngOnInit(): void {}
 
   // Method to handle file selection
-  fileSelected(event: any): void {
-    this.selectedFile = event.target.files[0]; // Store the selected file
-    if (this.selectedFile) {
-      this.categorizeFile(this.selectedFile); // Categorize the selected file
+  filesSelected(event: any): void {
+    this.selectedFiles = Array.from(event.target.files); // Store the selected files in an array
+    console.log(this.selectedFiles);
+  }
+
+  // Method to categorize and upload files one by one
+  uploadFiles(): void {
+    if (this.selectedFiles.length > 0) {
+      this.selectedFiles.forEach((file) => {
+        const storage = getStorage(); // Use the new getStorage function
+        const storageRef = ref(storage, file.name); // Create a reference to 'file.name'
+
+        // Upload the file
+        uploadBytes(storageRef, file)
+          .then((snapshot) => {
+            console.log(`Uploaded file: ${file.name}`);
+
+            // Get the download URL
+            getDownloadURL(storageRef).then((url) => {
+              this.downloadURLs.push(url); // Store the download URL in the array
+
+              // Prepare the data to send to the server
+              const fileData = {
+                file_name: file.name, // Full file name
+                file_type: this.getFileType(file), // Categorize the file based on MIME type
+                file_extension: file.name.split(".").pop() || "", // Extract the file extension
+                file_link: url, // Firebase download URL
+              };
+
+              console.log("File available at:", url);
+              console.log("File data to send to server:", fileData);
+
+              // Here you would send 'fileData' to your Express backend using Axios
+              this.saveFileToServer(fileData);
+            });
+          })
+          .catch((error) => {
+            console.error(`Error uploading file ${file.name}:`, error);
+          });
+      });
+    } else {
+      console.log("No files selected");
     }
   }
 
-  // Method to categorize the file based on MIME type or extension
-  categorizeFile(file: File): void {
+  // Helper method to determine file type (image, video, or file)
+  getFileType(file: File): string {
     const imageTypes = ["image/jpeg", "image/png", "image/gif"];
     const videoTypes = ["video/mp4", "video/avi", "video/mov"];
 
-    // Get MIME type of the file
-    const mimeType = file.type;
-
-    if (imageTypes.includes(mimeType)) {
-      this.fileType = "image";
-    } else if (videoTypes.includes(mimeType)) {
-      this.fileType = "video";
+    if (imageTypes.includes(file.type)) {
+      return "image";
+    } else if (videoTypes.includes(file.type)) {
+      return "video";
     } else {
-      this.fileType = "file"; // Default to 'file' for non-image and non-video types
-    }
-
-    // Get the file extension
-    this.fileExtension = file.name.split(".").pop() || ""; // Extract the file extension
-    console.log(
-      `File categorized as: ${this.fileType}, with extension: ${this.fileExtension}`
-    );
-  }
-
-  // Method to handle file upload
-  uploadFile(): void {
-    if (this.selectedFile) {
-      const storage = getStorage(); // Use the new getStorage function
-      const storageRef = ref(storage, this.selectedFile.name); // Create a reference to 'file.name'
-
-      // Upload the file
-      uploadBytes(storageRef, this.selectedFile)
-        .then((snapshot) => {
-          console.log("Uploaded a file!");
-
-          // Get the download URL
-          getDownloadURL(storageRef).then((url) => {
-            this.downloadURL = url; // Store and use this URL to display or link to the file
-
-            // Prepare the data to send to the server
-            const fileData = {
-              file_name: this.selectedFile!.name, // Full file name
-              file_type: this.fileType,
-              file_extension: this.fileExtension,
-              file_link: this.downloadURL,
-            };
-
-            console.log("File available at:", this.downloadURL);
-            console.log("File data to send to server:", fileData);
-
-            // Here you would send 'fileData' to your Express backend using Axios
-            this.saveFileToServer(fileData);
-          });
-        })
-        .catch((error) => {
-          console.error("Error uploading file:", error);
-        });
-    } else {
-      console.log("No file selected");
+      return "file"; // Default to 'file' for non-image and non-video types
     }
   }
 

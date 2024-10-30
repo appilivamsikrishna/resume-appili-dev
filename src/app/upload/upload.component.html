@@ -1,10 +1,12 @@
 <!-- File input field -->
-<input type="file" (change)="fileSelected($event)" />
+<input type="file" (change)="filesSelected($event)" multiple />
 <br>
-<!-- Upload button to trigger the uploadFile function -->
-<button (click)="uploadFile()">Upload</button>
+<!-- Upload button to trigger the uploadFiles function -->
+<button (click)="uploadFiles()">Upload File(s)</button>
 
 <!-- Display the download link once the file is uploaded -->
-<div *ngIf="downloadURL">
-  <a [href]="downloadURL" target="_blank">View Uploaded File</a>
+<div *ngIf="downloadURLs.length > 0">
+  <p *ngFor="let url of downloadURLs">
+    <a [href]="url" target="_blank">View Uploaded File</a>
+  </p>
 </div>
