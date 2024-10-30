@@ -29,6 +29,7 @@
     "@ngx-translate/core": "14.0.0",
     "@ngx-translate/http-loader": "7.0.0",
     "core-js": "^3.22.8",
+    "firebase": "^11.0.1",
     "ngx-spinner": "^13.1.1",
     "numeral": "^2.0.6",
     "rxjs": "^7.5.5",
