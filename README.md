@@ -1,47 +1,107 @@
-# resume-template
 
-Responsive resume template for developers, supporting mobile, tablet and desktop devices.
-Added support for English and French languages using `ngx-translate`.
+# CDN Project
 
-Technologies:
+This project is a Content Delivery Network (CDN) interface built with Angular. It enables users to upload, view, and manage files (images, videos, and general files) through an intuitive UI. Uploaded files are stored in Firebase, and their metadata is managed in MongoDB via an Express API backend.
 
-- Angular 13.x
-- ngx-translate for i18n
-- Bootstrap 5.x
-- Typescript 4.x
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Core Features](#core-features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [File Structure](#file-structure)
+- [Screenshots](#screenshots)
+- [Future Enhancements](#future-enhancements)
 
-# Live demo available
+---
 
-* http://amwebexpert.users.sourceforge.net/
+## Project Overview
+The CDN interface is designed to simplify the management of files uploaded to a content delivery network. It allows users to select files, view file details, upload files to Firebase, and manage them through categorized lists for easy access and retrieval.
 
+## Core Features
+1. **File Selection and Display**:
+   - Allows users to select multiple files at once.
+   - Displays selected file details immediately (name, type, size).
+   - Dynamically adjusts the button text based on selection (e.g., "Upload File" or "Upload All Files").
 
-# Update, Build and deploy
+2. **File Upload**:
+   - Files are uploaded to Firebase, generating public URLs for each.
+   - Metadata (file name, type, size, and URL) is stored in MongoDB via the backend API.
 
-First thing to do before you forget: update `AppConstants.DATE` value to the current date. Also update pages as required. Then you produce the production build by launching this script:
+3. **File Management**:
+   - Categorizes files into images, videos, and general files.
+   - Separate Angular components (`ImagesComponent`, `VideosComponent`, `FilesComponent`) manage each file type.
+   - Files can be viewed (via Firebase URL) and deleted from the CDN.
+   - SweetAlert confirmations provide a user-friendly experience for deletion actions.
 
-    `./build.sh`
+## Technologies Used
+- **Frontend**: Angular, HTML, CSS
+- **Storage**: Firebase Storage for files
+- **Backend**: Express API
+- **Database**: MongoDB for storing metadata
+- **Other Libraries**:
+  - Axios for HTTP requests from Angular
+  - SweetAlert for enhanced UI alerts and confirmations
 
-This will:
+## Installation
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+   ```
 
-- build for production
-- copy the whole `dist/` folder content to the `docs/` folder
-- run source control commands: `git` `add`, `commit` and `push`
+2. **Install dependencies**:
+   - Angular app dependencies:
+     ```bash
+     npm install
+     ```
+   - Backend dependencies (Express, MongoDB):
+     ```bash
+     npm install axios firebase sweetalert2
+     ```
 
-Wait for Github Pages to be ready, then the resume will be available online at this address:
+3. **Set up Firebase**:
+   - Create a Firebase project and enable Firebase Storage.
+   - Add your Firebase configuration in `src/environments/environment.ts`.
 
-- https://<your-github-account-id>.github.io/resume-template
-- Example: https://amwebexpert.github.io/resume-template
+4. **Set up MongoDB**:
+   - Configure a MongoDB database to store file metadata.
+   - Ensure the backend API has access to this database.
 
-# License
+## Usage
+1. **Run the Angular Application**:
+   ```bash
+   ng serve
+   ```
 
-This project is licensed under the Apache 2.0 license. For more information see `LICENSE.md`.
+2. **Run the Backend API**:
+   ```bash
+   node server.js
+   ```
 
-## Setup Volt Free - Bootstrap 5 Dashboard
+3. **Navigate to** `http://localhost:4200` in your browser.
 
-This project has been bootstraped using the excellent Volt admin templates. Volt online demo: https://demo.themesberg.com/volt/pages/dashboard/dashboard.html
+### File Upload and Management
+- Select files to upload; details will be displayed immediately.
+- Choose “Upload File” for single file uploads or “Upload All Files” for multiple files.
+- View or delete uploaded files from categorized lists in each component (Images, Videos, Files).
 
-To use the open source version of Volt, just follow instructions here:
+## File Structure
+- **`/src/app`**: Contains Angular components:
+  - `UploadComponent`: Handles file selection and upload.
+  - `ImagesComponent`, `VideosComponent`, `FilesComponent`: Categorized file management.
+- **`/src/environments/environment.ts`**: Contains Firebase configuration.
+- **`/server.js`**: Backend Express API for MongoDB interactions.
 
-* https://github.com/themesberg/volt-bootstrap-5-dashboard#theme-without-sass-gulp-or-npm
+## Screenshots
+<!-- Include screenshots here if possible -->
 
-Then copy folders of `html&css` folders (css, vendor, img) into `resume-template/src/assets/`
+## Future Enhancements
+- **User Authentication**: Add user login to restrict file management to authorized users.
+- **File Categorization Enhancements**: Automate categorization for other file types.
+- **Analytics**: Add analytics to track upload/download activity.
+- **Enhanced File Previews**: Provide previews for image and video files directly in the app.
+
+---
+
+This CDN project provides a comprehensive interface for managing files in a content delivery network, supporting real-time uploads, dynamic file handling, and a smooth user experience.
