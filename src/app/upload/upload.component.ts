@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import * as firebase from "firebase/app"; // Import Firebase SDK
-import "firebase/storage"; // Import Firebase Storage
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Import necessary storage functions
+import { initializeApp } from "firebase/app";
+import { environment } from "../../environments/environment"; // Ensure your Firebase config is correct
 
 @Component({
   selector: "app-upload",
@@ -8,25 +9,36 @@ import "firebase/storage"; // Import Firebase Storage
   styleUrls: ["./upload.component.css"],
 })
 export class UploadComponent implements OnInit {
-  downloadURL: string; // To store the download URL of the uploaded file
+  downloadURL: string; // Store the URL after upload
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Initialize Firebase app
+    initializeApp(environment.firebase); // Ensure Firebase is initialized with your configuration
+  }
 
   // Method to handle file upload
   uploadFile(event: any): void {
     const file = event.target.files[0]; // Get the selected file
-    const storageRef = firebase.storage().ref(); // Reference to Firebase Storage
-    const fileRef = storageRef.child(file.name); // Create a reference with the file's name
+
+    // Initialize Firebase Storage and create a reference to the file
+    const storage = getStorage(); // Use the new getStorage function
+    const storageRef = ref(storage, file.name); // Create a reference to 'file.name'
 
     // Upload the file
-    fileRef.put(file).then(() => {
-      // Once the upload is complete, get the download URL
-      fileRef.getDownloadURL().then((url) => {
-        this.downloadURL = url; // Save the URL to display or use in your app
-        console.log("File available at:", this.downloadURL);
+    uploadBytes(storageRef, file)
+      .then((snapshot) => {
+        console.log("Uploaded a file!");
+
+        // Get the download URL
+        getDownloadURL(storageRef).then((url) => {
+          this.downloadURL = url; // Store and use this URL to display or link to the file
+          console.log("File available at:", this.downloadURL);
+        });
+      })
+      .catch((error) => {
+        console.error("Error uploading file:", error);
       });
-    });
   }
 }
