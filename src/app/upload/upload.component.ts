@@ -15,7 +15,7 @@ export class UploadComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialize Firebase app
-    initializeApp(environment.firebase); // Ensure Firebase is initialized with your configuration
+    // initializeApp(environment.firebase); // Ensure Firebase is initialized with your configuration
   }
 
   // Method to handle file upload
