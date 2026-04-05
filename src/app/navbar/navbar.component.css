@@ -1,0 +1,50 @@
+/* Ensure all buttons are visible in sidebar */
+:host ::ng-deep .sidebar-inner {
+  overflow-y: auto !important;
+  padding-bottom: 2rem;
+}
+
+/* View Resume Button */
+.btn-view-resume {
+  background: transparent;
+  border: 2px solid #17a2b8;
+  color: #17a2b8;
+  transition: all 0.3s ease;
+}
+
+.btn-view-resume:hover,
+.btn-view-resume:focus {
+  background: #17a2b8;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(23, 162, 184, 0.4);
+}
+
+/* Download Resume Button */
+.btn-download-resume {
+  background: transparent;
+  border: 2px solid #e67e22;
+  color: #e67e22;
+  transition: all 0.3s ease;
+}
+
+.btn-download-resume:hover,
+.btn-download-resume:focus {
+  background: #e67e22;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(230, 126, 34, 0.4);
+}
+
+/* Get in Touch Button */
+.btn-get-in-touch {
+  background: transparent;
+  border: 2px solid #28a745;
+  color: #28a745;
+  transition: all 0.3s ease;
+}
+
+.btn-get-in-touch:hover,
+.btn-get-in-touch:focus {
+  background: #28a745;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(40, 167, 69, 0.4);
+}
