@@ -166,31 +166,57 @@ img {
   align-items: center;
   gap: 10px;
   margin-top: 5px;
-  flex-wrap: nowrap; /* Prevents wrapping to a new line */
+  flex-wrap: wrap;
 }
-progress {
-  flex: 1; /* Ensures the progress bar takes up the remaining space */
-  min-width: 100px; /* Prevents the progress bar from being too small */
+.progress-track {
+  flex: 1;
+  min-width: 60px;
   height: 10px;
   border-radius: 5px;
+  background-color: #e0e0e0;
+  overflow: hidden;
 }
 
+.progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 5px;
+  animation: growBar 1.5s ease-out forwards, colorShift 1.5s ease-out forwards;
+}
 
-  /* Customize progress bar colors */
-  progress::-webkit-progress-bar {
-    background-color: #e0e0e0;
-    border-radius: 5px;
+@keyframes colorShift {
+  0% {
+    background-color: #e74c3c;
   }
+  30% {
+    background-color: #e74c3c;
+  }
+  50% {
+    background-color: #f39c12;
+  }
+  70% {
+    background-color: #f39c12;
+  }
+  85% {
+    background-color: #28a745;
+  }
+  100% {
+    background-color: #28a745;
+  }
+}
 
-  progress::-webkit-progress-value {
-    background-color: #007bff;
-    border-radius: 5px;
+@keyframes growBar {
+  from {
+    width: 0;
   }
+  to {
+    width: var(--target-width);
+  }
+}
 
-  progress::-moz-progress-bar {
-    background-color: #007bff;
-    border-radius: 5px;
-  }
+.progress-bar-container span {
+  white-space: nowrap;
+}
 
 
   .test-fire-link {
