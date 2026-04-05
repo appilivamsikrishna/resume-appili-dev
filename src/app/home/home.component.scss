@@ -205,3 +205,58 @@ progress {
   color: #0056b3;
   text-decoration: underline;
 }
+
+/* Experience section responsive */
+.experience-section {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  h5 {
+    line-height: 1.6;
+  }
+
+  .project-detail ul {
+    padding-left: 20px;
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-section {
+    h5 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    .project-detail ul {
+      padding-left: 15px;
+
+      li {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-section {
+    h5 {
+      font-size: 0.9rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+
+    .project-detail ul li {
+      font-size: 0.85rem;
+    }
+  }
+}
