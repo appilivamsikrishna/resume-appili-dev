@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(npm install:*)",
+      "Bash(npx ng:*)",
+      "Bash(nvm --version)",
+      "Bash(nvm version:*)",
+      "Bash(python -m http.server 4300)",
+      "Bash(curl:*)",
+      "Bash(git config:*)",
+      "Bash(find:*)",
+      "Bash(taskkill //F //FI \"WINDOWTITLE eq ng serve*\")",
+      "Bash(tasklist)",
+      "Bash(taskkill //F //PID 27980)",
+      "Bash(taskkill //F //PID 35348)"
+    ]
+  }
+}
