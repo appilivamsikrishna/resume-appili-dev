@@ -13,7 +13,12 @@
       "Bash(taskkill //F //FI \"WINDOWTITLE eq ng serve*\")",
       "Bash(tasklist)",
       "Bash(taskkill //F //PID 27980)",
-      "Bash(taskkill //F //PID 35348)"
+      "Bash(taskkill //F //PID 35348)",
+      "Bash(pip --version)",
+      "Bash(python -c \"import pikepdf\")",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(code .:*)"
     ]
   }
 }
