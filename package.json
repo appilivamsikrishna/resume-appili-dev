@@ -4,7 +4,10 @@
   "version": "2.3.0",
   "scripts": {
     "ng": "ng",
+    "set-build-date": "node scripts/set-build-date.js",
+    "prestart": "npm run set-build-date",
     "start": "ng serve",
+    "prebuild": "npm run set-build-date",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

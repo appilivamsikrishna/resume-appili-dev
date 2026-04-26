@@ -1,4 +1,5 @@
 import { VERSION } from '@angular/core';
+import { BUILD_INFO } from '../environments/build-info';
 
 declare const bootstrap: any; // global reference
 
@@ -7,7 +8,7 @@ declare const bootstrap: any; // global reference
  */
 export class AppConstants {
 
-  public static DATE = '5 Apr 2026';
+  public static DATE = BUILD_INFO.date;
   public static APP_TITLE = 'Krishna';
   public static AUTHOR_NAME = 'Appili Vamsi Krishna';
   public static APP_TITLE_VERSION: string = AppConstants.APP_TITLE + ' - ' + AppConstants.DATE;

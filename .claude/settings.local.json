@@ -18,7 +18,9 @@
       "Bash(python -c \"import pikepdf\")",
       "Bash(pip install:*)",
       "Bash(python:*)",
-      "Bash(code .:*)"
+      "Bash(code .:*)",
+      "Bash(node scripts/set-build-date.js)",
+      "Bash(npm run *)"
     ]
   }
 }
