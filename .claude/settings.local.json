@@ -20,7 +20,11 @@
       "Bash(python:*)",
       "Bash(code .:*)",
       "Bash(node scripts/set-build-date.js)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(npm start *)"
     ]
   }
 }
