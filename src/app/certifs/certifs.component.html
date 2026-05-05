@@ -237,9 +237,9 @@
         <h5 class="text-center">MTech Projects</h5>
         <ul class="no-bullets">
           <li>
-            🚀 "Development of a Vision Guided Aerially Launched Short Range
-            Missile" - A 2 km Fire-and-Forget Armed Missile. A Revolutionary
-            Pursuit for IAF, under the guidance of
+            🚀 <b>Vision-Guided Aerially Launched Short-Range Missile</b> &mdash;
+            a 5 kg, 2 km-range Precision-Guided Munition (PGM), indigenously
+            designed for the IAF, under the guidance of
             <a
               href="https://iitm.irins.org/profile/60125"
               class="test-fire-link"
@@ -247,12 +247,52 @@
             >
               <strong>Prof. Dr. S. R. Chakravarthy</strong>
             </a>
+            &mdash; PoC video and documentation at
+            <a
+              href="https://mtech.appili.dev/"
+              class="test-fire-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><b><u>mtech.appili.dev</u></b></a
+            >.
+            <ul>
+              <li>
+                <b>Embedded &amp; real-time CV stack:</b> NVIDIA Jetson TX2
+                (256 CUDA cores, 1.3 TFLOPS FP16) as flight computer;
+                BeagleBone PocketBeagle (ARM Cortex-A8 + dual 200 MHz PRUs) as
+                Stores Management Processor; e-CAM132 13 MP MIPI CSI-2 camera
+                on a custom 2-axis gimbal; Pololu Micro Maestro 6-channel USB
+                servo controller; FPGA architecture studied for v4.
+              </li>
+              <li>
+                <b>Computer vision:</b> closed-loop pan-tilt object tracking
+                via OpenCV <b>CSRT</b> with PWM servo correction (Python) —
+                frame-quadrant centroid extraction → servo correction loop
+                independent of other missile systems; evaluated 6 trackers
+                (BOOSTING / MIL / KCF / CSRT / MedianFlow / TLD / MOSSE).
+              </li>
+              <li>
+                <b>ML trajectory prediction:</b> compared 7 models (Random
+                Forest, XGBoost, SVM, DNN, Linear / Lasso / Logistic
+                regression) with TensorFlow + Keras + scikit-learn and SMOTE
+                class balancing; <b>DNN selected at MSE 0.145</b>.
+              </li>
+              <li>
+                <b>Aerospace deliverables:</b> designed <b>Solid Rocket Motor
+                V2.0</b> (1000 N thrust, 2.5 s burnout) and
+                <b>carbon-composite missile frame</b> (50% lighter than
+                aluminum, hydrotested to 50 bar); MATLAB-based BEM thrust
+                analysis; NASA CEA propellant simulation; designed canard
+                mechanism, 2-axis gimbal, ground / hand launchers, and
+                weapon-release systems.
+              </li>
+            </ul>
           </li>
           <br />
           <li>
-            🦅 Eagle's Eye Precision: "Detect and Drop" - 5.4 kg MTOW UAV,
-            Delivering 1.5 kg Payload to a 5 km Dead-drop with Minimal
-            Equipment.
+            🦅 <b>Eagle's Eye Precision: "Detect and Drop"</b> — 5.4 kg MTOW
+            UAV delivering 1.5 kg payload to a 5 km dead-drop with minimal
+            equipment.
           </li>
         </ul>
       </div>

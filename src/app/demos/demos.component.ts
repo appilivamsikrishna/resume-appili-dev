@@ -12,7 +12,7 @@ import { GithubUserProjectsService } from '../services/github-user-projects.serv
 })
 export class DemosComponent implements OnInit {
   public isSearching = false;
-  public username = 'amwebexpert';
+  public username = 'appilivamsikrishna';
   public projects: GithubUserProject[];
 
   constructor(
