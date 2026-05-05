@@ -1,53 +1,264 @@
 <div class="row justify-content-md-center">
-  <div class="col-12 col-md-8 col-xl-6 mb-4">
+  <div class="col-12 col-md-10 col-xl-9 mb-4">
     <div class="card border-light shadow-sm card-first">
-      <div id="myDivAppili" class="card-bodyX text-xl-center">
-        <h3 class="text-center mt-2">Technologies and Frameworks</h3>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row justify-content-md-center">
-  <div class="col-md-11 mb-2">
-    <div class="card border-light shadow-sm">
-      <div class="card-body">
-        <ul class="no-bullets">
-          <li>📦 JavaScript, TypeScript, HTML, CSS</li>
-          <li>⚛️ React, 🅰️ Angular,</li>
-          <li>📦 Node.js, Express.js, Sequelize, MongoDB</li>
-          <li>✅ Jest, TestCafé, Jenkins</li>
-          <li>📚 Swagger UI</li>
-          <li>🚀 Microservices (Docker)</li>
-          <li>
-            ☁️ AWS Cloud (Lambda, DynamoDB, Cognito, EC2, API Gateway, AWS
-            Amplify, Route 53)
-          </li>
-          <li>🌐 Cloudflare, DigitalOcean</li>
-          <li>☁️ GCP (Firebase, Google Drive API)</li>
-          <!-- <li>☁️ Microsoft Azure</li> -->
-          <li>📱 Appian, Outsystems (iOS, Android), Mendix</li>
-          <li>🎨 Figma, Canva, Blender</li>
-        </ul>
+      <div class="card-bodyX text-xl-center">
+        <h3 class="text-center mt-2">Technologies &amp; Frameworks</h3>
+        <p class="text-center text-muted mb-0">
+          Production-grade stack across full-stack web, AI/LLM workflows, and
+          embedded ML / computer vision.
+        </p>
       </div>
     </div>
   </div>
 </div>
 
 <div class="row justify-content-center">
-  <div class="col-12 col-md-11 mb-2">
-    <div class="card border-light shadow-sm">
-      <div class="card-body">
-        <div class="container">
-          <div class="row justify-content-center icon-row">
-            <div class="col-3 col-sm-2 col-md-1" *ngFor="let icon of icons">
-              <a [title]="icon.title" [href]="icon.href" target="_blank">
-                <img class="tech-icon" [src]="icon.src" [alt]="icon.alt" />
-              </a>
+  <div class="col-12 col-xl-11">
+    <div class="row g-3">
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">📦</span> Languages
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">TypeScript</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">MATLAB</span>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">⚛️</span> Frontend
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">React</span>
+              <span class="tech-pill">Next.js</span>
+              <span class="tech-pill">Angular</span>
+              <span class="tech-pill">Redux</span>
+              <span class="tech-pill">React Hooks</span>
+              <span class="tech-pill">Tanstack Tables</span>
+              <span class="tech-pill">React-Router</span>
+              <span class="tech-pill">Tailwind</span>
+              <span class="tech-pill">HTML</span>
+              <span class="tech-pill">CSS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">🛠️</span> Backend
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">Node.js</span>
+              <span class="tech-pill">Express</span>
+              <span class="tech-pill">GraphQL</span>
+              <span class="tech-pill">REST APIs</span>
+              <span class="tech-pill">Sequelize</span>
+              <span class="tech-pill">Swagger UI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">🗄️</span> Databases
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">MongoDB Atlas</span>
+              <span class="tech-pill">PostgreSQL</span>
+              <span class="tech-pill">DynamoDB</span>
+              <span class="tech-pill">SQL</span>
+              <span class="tech-pill">Snowflake</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">☁️</span> Cloud &amp; DevOps
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">AWS Lambda</span>
+              <span class="tech-pill">EC2</span>
+              <span class="tech-pill">API Gateway</span>
+              <span class="tech-pill">Cognito</span>
+              <span class="tech-pill">RDS</span>
+              <span class="tech-pill">CloudWatch</span>
+              <span class="tech-pill">CloudFormation</span>
+              <span class="tech-pill">Amplify</span>
+              <span class="tech-pill">IAM</span>
+              <span class="tech-pill">Route 53</span>
+              <span class="tech-pill">GCP</span>
+              <span class="tech-pill">Firebase</span>
+              <span class="tech-pill">Cloudflare Workers</span>
+              <span class="tech-pill">DigitalOcean</span>
+              <span class="tech-pill">Vercel</span>
+              <span class="tech-pill">Docker</span>
+              <span class="tech-pill">Jenkins</span>
+              <span class="tech-pill">CI / CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">🏛️</span> Architecture
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">Microservices</span>
+              <span class="tech-pill">Event-Driven Architecture</span>
+              <span class="tech-pill">Distributed Systems</span>
+              <span class="tech-pill">Multi-tenancy</span>
+              <span class="tech-pill">Caching</span>
+              <span class="tech-pill">Performance Optimization</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">🤖</span> AI / LLM
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill highlight-pill">Claude Code</span>
+              <span class="tech-pill highlight-pill">Claude Agent SDK</span>
+              <span class="tech-pill">Anthropic SDK</span>
+              <span class="tech-pill">OpenAI SDK</span>
+              <span class="tech-pill">Custom agent design</span>
+              <span class="tech-pill">Persistent memory</span>
+              <span class="tech-pill">Prompt engineering</span>
+              <span class="tech-pill">RAG patterns</span>
+              <span class="tech-pill">Custom-LLM training pipelines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">🧠</span> ML &amp; Computer Vision
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">TensorFlow</span>
+              <span class="tech-pill">Keras</span>
+              <span class="tech-pill">scikit-learn</span>
+              <span class="tech-pill">NumPy</span>
+              <span class="tech-pill">Pandas</span>
+              <span class="tech-pill">OpenCV</span>
+              <span class="tech-pill">CUDA</span>
+              <span class="tech-pill">DNNs</span>
+              <span class="tech-pill">Random Forest</span>
+              <span class="tech-pill">XGBoost</span>
+              <span class="tech-pill">SVM</span>
+              <span class="tech-pill">SMOTE</span>
+              <span class="tech-pill">CSRT / KCF / MOSSE trackers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">🔌</span> Hardware &amp; Embedded
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">NVIDIA Jetson TX2</span>
+              <span class="tech-pill">BeagleBone PocketBeagle</span>
+              <span class="tech-pill">FPGA</span>
+              <span class="tech-pill">Servo / PWM control</span>
+              <span class="tech-pill">2-axis gimbals</span>
+              <span class="tech-pill">MIPI CSI-2 cameras</span>
+              <span class="tech-pill">Sensor integration</span>
+              <span class="tech-pill">Real-time control loops</span>
+              <span class="tech-pill">NASA CEA</span>
+              <span class="tech-pill">MATLAB BEM</span>
+              <span class="tech-pill">CFD</span>
+              <span class="tech-pill">FEA</span>
+              <span class="tech-pill">CAD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">✅</span> Testing
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">Jest (unit + integration)</span>
+              <span class="tech-pill">TestCafé</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">🧰</span> Auth, Analytics &amp; LCNC
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">Keycloak</span>
+              <span class="tech-pill">Pendo</span>
+              <span class="tech-pill">JWT</span>
+              <span class="tech-pill">AES-256-GCM</span>
+              <span class="tech-pill">Git</span>
+              <span class="tech-pill">Appian RPA</span>
+              <span class="tech-pill">Appian IDP</span>
+              <span class="tech-pill">Mendix</span>
+              <span class="tech-pill">OutSystems</span>
+              <span class="tech-pill">PowerApps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card border-light shadow-sm category-card h-100">
+          <div class="card-body">
+            <h5 class="category-title">
+              <span class="category-icon">🎨</span> Design
+            </h5>
+            <div class="pill-group">
+              <span class="tech-pill">Figma</span>
+              <span class="tech-pill">Canva</span>
+              <span class="tech-pill">Blender</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
